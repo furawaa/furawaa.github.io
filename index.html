@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Matvei Bondarenko — curriculum vitae." />
+    <meta name="theme-color" content="#d2cdb9" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#2e3240" media="(prefers-color-scheme: dark)" />
+    <title>Matvei Bondarenko — CV</title>
+    <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="assets/favicon-64.png" sizes="64x64" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <link rel="preload" href="assets/fonts/carolingia.woff" as="font" type="font/woff" crossorigin />
+    <link rel="stylesheet" href="styles.css?v=65" />
+    <script>
+      // Palettes by scheme; each load picks one at random from the pool that
+      // matches the light/dark preference. Partners swap with each other on toggle.
+      window.folioPalettes = {
+        pools: {
+          light: ["naghammadi", "steve-jobs-light", "millennium-passion", "webpunk"],
+          dark: ["slate", "pewter", "graphite", "steve-jobs", "prettyhatemachine", "swedenyes"],
+        },
+        partners: {
+          naghammadi: "slate", slate: "naghammadi",
+          "steve-jobs": "steve-jobs-light", "steve-jobs-light": "steve-jobs",
+          swedenyes: "webpunk", webpunk: "swedenyes",
+        },
+        // Shown as hashtags: lowercase, words run together.
+        names: {
+          naghammadi: "#naghammadi", slate: "#slate", pewter: "#pewter", graphite: "#graphite",
+          "steve-jobs": "#stevejobs", "steve-jobs-light": "#stevejobslight",
+          "millennium-passion": "#millenniumpassion", webpunk: "#webpunk",
+          prettyhatemachine: "#prettyhatemachine", swedenyes: "#swedenyes",
+        },
+        // Page colour for the browser's address bar.
+        bars: {
+          naghammadi: "#d2cdb9", slate: "#2e3240", pewter: "#303239", graphite: "#323232",
+          "steve-jobs": "#140e1d", "steve-jobs-light": "#ebf1e2", "millennium-passion": "#c4d1d0",
+          webpunk: "#9aadfe", prettyhatemachine: "#061317", swedenyes: "#000000",
+        },
+        scheme() {
+          return document.documentElement.dataset.theme
+            || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        },
+        apply(palette) {
+          document.documentElement.dataset.palette = palette;
+          document.querySelectorAll('meta[name="theme-color"]').forEach((meta) => (meta.content = this.bars[palette]));
+        },
+        // Reachable only on purpose: the toggle (from webpunk) or the footer cycle.
+        hidden: ["swedenyes"],
+        // How often the random pick lands on a palette; the rest count as 1.
+        weights: { slate: 2, "steve-jobs": 0.5 },
+        random(scheme) {
+          const pool = this.pools[scheme].filter((palette) => !this.hidden.includes(palette));
+          const weight = (palette) => this.weights[palette] ?? 1;
+          let roll = Math.random() * pool.reduce((sum, palette) => sum + weight(palette), 0);
+          return pool.find((palette) => (roll -= weight(palette)) < 0) ?? pool[pool.length - 1];
+        },
+      };
+      try {
+        const theme = localStorage.getItem("theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch {}
+      folioPalettes.apply(folioPalettes.random(folioPalettes.scheme()));
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#cv">Skip to CV</a>
+    <button class="theme-toggle" type="button" aria-label="Switch colour theme" title="Switch colour theme">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="6.5"/><path d="M10 3.5a6.5 6.5 0 0 1 0 13z"/></svg>
+    </button>
+
+    <!-- Edge filters for the embossed header stone: light catches edges facing
+         the top-left, a half-strength pass the opposite ones, then both brighten.
+         The light variant inverts the result: dark relief on a pale strip; the
+         blue one turns the brightness into pure blue (up to #0000ff), the violet one tints
+         the silver toward Steve Jobs' purple page. -->
+    <svg class="filters" width="0" height="0" aria-hidden="true" focusable="false">
+      <filter id="stone-emboss" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="-1 -1 0 -1 0 1 0 1 1" preserveAlpha="true" result="lit" />
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="1 1 0 1 0 -1 0 -1 -1" preserveAlpha="true" result="shade" />
+        <feComposite in="lit" in2="shade" operator="arithmetic" k2="1" k3="0.5" result="edges" />
+        <feComponentTransfer in="edges" result="bright">
+          <feFuncR type="linear" slope="2" />
+          <feFuncG type="linear" slope="2" />
+          <feFuncB type="linear" slope="2" />
+        </feComponentTransfer>
+      </filter>
+      <filter id="stone-emboss-light" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="-1 -1 0 -1 0 1 0 1 1" preserveAlpha="true" result="lit" />
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="1 1 0 1 0 -1 0 -1 -1" preserveAlpha="true" result="shade" />
+        <feComposite in="lit" in2="shade" operator="arithmetic" k2="1" k3="0.5" result="edges" />
+        <feComponentTransfer in="edges" result="bright">
+          <feFuncR type="linear" slope="2" />
+          <feFuncG type="linear" slope="2" />
+          <feFuncB type="linear" slope="2" />
+        </feComponentTransfer>
+        <feComponentTransfer in="bright">
+          <feFuncR type="table" tableValues="1 0" />
+          <feFuncG type="table" tableValues="1 0" />
+          <feFuncB type="table" tableValues="1 0" />
+        </feComponentTransfer>
+      </filter>
+      <filter id="stone-emboss-blue" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="-1 -1 0 -1 0 1 0 1 1" preserveAlpha="true" result="lit" />
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="1 1 0 1 0 -1 0 -1 -1" preserveAlpha="true" result="shade" />
+        <feComposite in="lit" in2="shade" operator="arithmetic" k2="1" k3="0.5" result="edges" />
+        <feComponentTransfer in="edges" result="bright">
+          <feFuncR type="linear" slope="2" />
+          <feFuncG type="linear" slope="2" />
+          <feFuncB type="linear" slope="2" />
+        </feComponentTransfer>
+        <feColorMatrix in="bright" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0.2126 0.7152 0.0722 0 0  0 0 0 1 0" />
+      </filter>
+      <filter id="stone-emboss-violet" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="-1 -1 0 -1 0 1 0 1 1" preserveAlpha="true" result="lit" />
+        <feConvolveMatrix in="SourceGraphic" order="3" kernelMatrix="1 1 0 1 0 -1 0 -1 -1" preserveAlpha="true" result="shade" />
+        <feComposite in="lit" in2="shade" operator="arithmetic" k2="1" k3="0.5" result="edges" />
+        <feComponentTransfer in="edges" result="bright">
+          <feFuncR type="linear" slope="2" />
+          <feFuncG type="linear" slope="2" />
+          <feFuncB type="linear" slope="2" />
+        </feComponentTransfer>
+        <feColorMatrix in="bright" type="matrix" values="0.92 0 0 0 0  0 0.84 0 0 0  0 0 1 0 0  0 0 0 1 0" />
+      </filter>
+    </svg>
+
+    <main id="cv" class="folio">
+      <header class="masthead">
+        <div class="seal" aria-hidden="true">
+          <img src="assets/avatar.jpg?v=2" alt="" width="480" height="480" />
+        </div>
+
+        <div class="identity">
+          <div class="identity-name">
+            <h1>Matvei Bondarenko</h1>
+            <p class="identity-location">
+              <img class="bavaria-flag" src="assets/bavaria-flag-12.png" alt="" width="12" height="12" />
+              <span>Munich, DE</span>
+            </p>
+          </div>
+          <div class="identity-copy">
+            <p class="identity-lead">Computer Science Master’s Student @ TUM</p>
+            <p class="identity-focus">Focus: Software Development, Agentic AI, Data Engineering, ML</p>
+            <p class="identity-now"><strong>Now:</strong> #teapunk RTS, folk-weather.com</p>
+          </div>
+        </div>
+
+        <a class="masthead-download" href="assets/Matvei_Bondarenko_CV_Oct2026.pdf?v=2" download="Matvei_Bondarenko_CV_Oct2026.pdf">Download CV.pdf</a>
+
+        <table class="contact-table" aria-label="Contact details">
+          <tbody>
+            <tr>
+              <td><a href="mailto:matvei.bondarenko@proton.me"><span class="contact-full">matvei.bondarenko@proton.me</span><span class="contact-short">Email</span></a></td>
+              <td><a href="https://github.com/furawaa" target="_blank" rel="noreferrer">GitHub</a></td>
+              <td><a href="https://www.linkedin.com/in/matveib" target="_blank" rel="noreferrer">LinkedIn</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </header>
+
+      <div class="ticker" role="marquee" aria-label="#OPENTOWORK">
+        <div class="ticker-window" aria-hidden="true">
+          <div class="ticker-track">
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+            <span>OPENTOWORK</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ledger">
+        <section id="education" class="education ruled-section">
+          <h2>Education</h2>
+
+          <article class="entry">
+            <header>
+              <h3>Technical University of Munich</h3>
+              <time aria-label="October 2026 to expected 2028"><span aria-hidden="true">Oct 2026—(2028)</span></time>
+            </header>
+            <p><em>Master of Science in Robotics/Cognition/Intelligence</em></p>
+            <p class="place">Munich</p>
+            <p><b>Focus:</b> Software Development, Agentic AI, Data Engineering, ML</p>
+          </article>
+
+          <article class="entry">
+            <header>
+              <h3>Technical University of Munich</h3>
+              <time aria-label="October 2022 to October 2026"><span aria-hidden="true">Oct 2022—2026</span></time>
+            </header>
+            <p><em>Bachelor of Science in Informatics</em></p>
+            <p class="place">Munich</p>
+          </article>
+
+          <article class="entry">
+            <header>
+              <h3>Studienkolleg Hamburg</h3>
+              <time aria-label="August 2021 to June 2022"><span aria-hidden="true">Aug 2021—Jun 2022</span></time>
+            </header>
+            <p><em>T-Kurs</em></p>
+            <p class="place">Hamburg</p>
+          </article>
+        </section>
+
+        <div class="ledger-right">
+        <section id="experience" class="experience ruled-section">
+          <h2>Experience</h2>
+
+          <article class="entry major-entry">
+            <header>
+              <h3>ITM Pharma Solutions GmbH</h3>
+              <div class="entry-meta">
+                <time aria-label="April 2024 to November 2025"><span aria-hidden="true">Apr 2024—Nov 2025</span></time>
+                <span class="entry-place">Garching bei München</span>
+              </div>
+            </header>
+            <p class="role"><em>Working Student: BI Engineer</em> <span>MS Fabric · Python · Pandas · PySpark · OpenAI API · Excel</span></p>
+            <p>Developed custom data solutions for R&amp;D and Sales departments at a radiopharmaceuticals company specializing in cancer diagnosis and treatment. Built and automated ETL pipelines from multiple sources. Implemented and maintained complex data reporting systems that enabled data-driven decision making across departments.</p>
+            <ul>
+              <li>Automated ingestion, cleaning, and relational modeling of dpt-managed Excel files and external API data (clinicaltrials.gov) in MS Fabric, leveraging Python, Pandas, and PySpark to deliver scalable, analytics-ready datasets for regular reporting, reducing manual data processing time by 70%.</li>
+              <li>Integrated OpenAI API to extract and standardize complex or ambiguous information; implemented error-handling routines that route problematic cases to a review report for manual inspection.</li>
+            </ul>
+          </article>
+
+          <article class="entry major-entry">
+            <header>
+              <h3>MyCleanHotel</h3>
+              <div class="entry-meta">
+                <time aria-label="October 2024 to March 2025"><span aria-hidden="true">Oct 2024—Mar 2025</span></time>
+                <span class="entry-place">Garching bei München</span>
+              </div>
+            </header>
+            <p class="role"><em>Praktikum @ TUM</em> <span>C# ASP.NET · Svelte · Docker · Postgres · RabbitMQ</span></p>
+            <p>Developed a microservices-based management system for Garching’s Galileo Hotel to track staff time, room assignments, and facility usage with real-time analytics dashboards.</p>
+            <ul>
+              <li>As part of a 4-person team, developed a Time Tracking microservice (C#, Entity Framework), implementing CRUD APIs with full test coverage (unit/component/integration), resulting in robust and reliable tracking of work time spans.</li>
+              <li>Engineered backend data-fetching and aggregation methods for the Analytics microservice, enabling real-time KPI dashboards using Cube.js and pre-aggregated reporting.</li>
+              <li>Designed and implemented interactive Svelte frontend dashboards with ApexCharts.js, connecting to microservice APIs and delivering dynamic data visualizations while supporting mock/demo data for development and testing.</li>
+            </ul>
+          </article>
+        </section>
+
+        <section id="projects" class="projects ruled-section">
+          <h2>Projects</h2>
+
+          <article class="entry project-entry">
+            <header>
+              <h3 class="project-title">
+                <span class="project-mark" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" role="img"><path d="M2.5 7V2.5H7M13 2.5h4.5V7M17.5 13v4.5H13M7 17.5H2.5V13M10 5.7 13.6 8v4L10 14.3 6.4 12V8zM6.4 8l3.6 2.2L13.6 8M10 10.2v4.1"/></svg>
+                </span>
+                <span>Bachelor’s Thesis: Bridging Spatial Context and LLMs in AR</span>
+              </h3>
+              <time aria-label="May 2026 to September 2026"><span aria-hidden="true">May 2026—Sep 2026</span></time>
+            </header>
+            <p class="project-description">Android AR memory assistant: an LLM voice agent recognizes tabletop objects and helps users memorize them; evaluated in a 60-participant study.</p>
+            <details class="project-more" open>
+              <summary>Details</summary>
+              <ul class="project-points">
+                <li><strong>Computer vision:</strong> <em>on-device</em> YOLO11 instance detection mapped onto the ARCore 3D point cloud, with occlusion and depth gates that stop labels leaking onto the background and one stable ID per real object as the camera moves.</li>
+                <li><strong>Agentic AI:</strong> real-time voice agent with a 3D avatar that uses tool calls to walk to objects, point at them, explain them and tell a <em>mnemonic story</em>; a guardrail limits it to objects it has already introduced.</li>
+                <li><strong>User study:</strong> designed and ran a 60-participant study, with a Kotlin tablet app that maps the table from a photo and records each participant’s recalled objects, order and placement.</li>
+              </ul>
+            </details>
+            <p class="project-stack">Unity (C#), ARCore, YOLO11, OpenAI Realtime API, Kotlin</p>
+          </article>
+
+          <article class="entry project-entry">
+            <header>
+              <h3 class="project-title">
+                <a href="https://github.com/furawaa/lumann-soundsystem" target="_blank" rel="noreferrer">
+                  <span class="project-mark" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" role="img"><path d="M2 10h2.2l1.5-5.2 2.2 10.4L10.3 7l2 6 1.7-3h4"/></svg>
+                  </span>
+                  <span>Lumann Soundsystem</span>
+                </a>
+              </h3>
+              <time aria-label="July 2026 to "><span aria-hidden="true">Jul 2026</span></time>
+            </header>
+            <p class="project-description">Audiobook generator that runs locally in the browser: paste a text, pick a voice, record and export one audio file.</p>
+            <details class="project-more" open>
+              <summary>Details</summary>
+              <ul class="project-points">
+                <li>Built around <em>Qwen3-TTS voice cloning</em> from a 10–30 s clip (optional download); eSpeak NG voices in ~100 languages work out of the box.</li>
+                <li><em>Non-destructive editing</em>: re-records add takes instead of overwriting, edited lines mark their audio out of date, and every re-format shows a diff of affected lines before it applies.</li>
+                <li>FastAPI server with a separate TTS worker process and live progress over SSE, a React + TypeScript UI, and ffmpeg assembly into a single .m4a or .wav.</li>
+              </ul>
+            </details>
+            <p class="project-stack">Python, FastAPI, React, TypeScript, eSpeak NG, Qwen3-TTS, FFmpeg</p>
+          </article>
+
+          <article class="entry project-entry">
+            <header>
+              <h3 class="project-title">
+                <a href="https://github.com/furawaa/ivy" target="_blank" rel="noreferrer">
+                  <span class="project-mark" aria-hidden="true">
+                    <svg viewBox="0 0 20 20" role="img"><path d="M6 4.5v11M14 7.5c0 4.5-8 3.5-8 8M7.5 3a1.5 1.5 0 1 1-3 0 1.5 1.5 0 1 1 3 0M7.5 17a1.5 1.5 0 1 1-3 0 1.5 1.5 0 1 1 3 0M15.5 6a1.5 1.5 0 1 1-3 0 1.5 1.5 0 1 1 3 0"/></svg>
+                  </span>
+                  <span>ivy</span>
+                </a>
+              </h3>
+              <time aria-label="February 2026"><span aria-hidden="true">Feb 2026</span></time>
+            </header>
+            <p class="project-description">VS Code extension for LLM chats: your <em>familiar</em> AI workflow, + branches and the liberty to manage context. Made for effective learning, codebase exploration and planning the work.</p>
+            <details class="project-more" open>
+              <summary>Details</summary>
+              <ul class="project-points">
+                <li>Built on everyday LLM habits, so there is nothing to relearn: one plain chat column, with the tree and the conversation map only on demand. Ignore the extras and it is an ordinary chat.</li>
+                <li>Branch from any message or a quoted excerpt: the branch opens beside its source, and the excerpt stays highlighted where it came from, so the <em>whole context is in view at a glance</em>.</li>
+                <li>Per-message context control: untick a message to drop it from the next request for that branch and every branch below; one click shows exactly what will be sent.</li>
+              </ul>
+            </details>
+            <p class="project-stack">TypeScript, VS Code API, React, Vite, Zustand, Claude Agent SDK, Codex CLI</p>
+          </article>
+
+          <article class="entry project-entry">
+            <header>
+              <h3 class="project-title">
+                <span class="project-mark" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" role="img"><path d="M3 4.2h5.1c1 0 1.9.4 1.9 1.3 0-.9.9-1.3 1.9-1.3H17v11.6h-5.1c-1 0-1.9.4-1.9 1.2 0-.8-.9-1.2-1.9-1.2H3zM10 5.5V17M5.3 7.3h2.5M5.3 10h2.5M12.2 7.3h2.5M12.2 10h2.5"/></svg>
+                </span>
+                <span>Local Study Assistant</span>
+              </h3>
+              <time aria-label="December 2025"><span aria-hidden="true">Dec 2025</span></time>
+            </header>
+            <p class="project-description">Privacy-first, <em>100% local</em> RAG study assistant with split-screen panes and screenshot-based follow-ups.</p>
+            <details class="project-more" open>
+              <summary>Details</summary>
+              <ul class="project-points">
+                <li>Ollama for LLM inference and sentence-transformers for embeddings.</li>
+                <li>PDF pipeline into a persistent ChromaDB store with metadata-filtered semantic search, powering Q&amp;A, summarization and quiz generation.</li>
+                <li>Vision-based PDF analysis: a 2-stage content-aware router classifies screenshots for text extraction or visual interpretation.</li>
+              </ul>
+            </details>
+            <p class="project-stack">Python, Ollama, ChromaDB, LangChain, FastAPI</p>
+          </article>
+        </section>
+        </div>
+
+        <section id="skills" class="skills ruled-section">
+          <h2>Skills</h2>
+
+          <dl>
+            <div>
+              <dt>Languages</dt>
+              <dd>English (C1), German (C1), Russian (Native)</dd>
+            </div>
+            <div>
+              <dt>Programming Languages</dt>
+              <dd>Python, C#, Java, Kotlin, C, SQL, HTML/CSS/JS, PHP, x86 Asm, OCaml</dd>
+            </div>
+            <div>
+              <dt>AI &amp; Computer Vision</dt>
+              <dd>YOLO11, ONNX Runtime, ARCore, OpenAI Realtime API, LangChain, Ollama, PyTorch</dd>
+            </div>
+            <div>
+              <dt>Development Frameworks</dt>
+              <dd>Unity, ASP.NET, Jetpack Compose, FastAPI, Svelte, Pandas, PySpark</dd>
+            </div>
+            <div>
+              <dt>Developer Tools</dt>
+              <dd>MS Fabric/PowerBI/Excel, Git, Docker, Postgres, ChromaDB, Figma, Adobe PS/Illustrator</dd>
+            </div>
+          </dl>
+        </section>
+
+        <section id="featured-facts" class="featured-facts ruled-section" aria-labelledby="featured-facts-heading">
+          <h2 id="featured-facts-heading">Userboxes</h2>
+          <div class="featured-facts-list" aria-label="Factoids about Matvei"></div>
+        </section>
+      </div>
+
+      <section id="about" class="about-all ruled-section" aria-labelledby="about-heading">
+        <h2 id="about-heading"><button class="section-fold" type="button" aria-expanded="false" aria-controls="about-body">Moreover...</button></h2>
+        <div id="about-body" hidden>
+          <p class="fact-instruction">A small personal index. Select a cell to read the full entry.</p>
+          <div class="fact-reader fact-reader-all" data-fact-reader aria-live="polite" aria-atomic="true">
+            <div class="fact-reader-visual" aria-hidden="true"></div>
+            <p class="fact-reader-copy">This user especially likes satellite maps.</p>
+            <a class="fact-reader-link" href="#" target="_blank" rel="noreferrer" hidden>Wikipedia</a>
+          </div>
+          <div class="fact-grid fact-grid-all" aria-label="Facts about Matvei"></div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <p><span class="footer-year">2026</span> webwelle</p>
+        <div class="footer-signals" aria-label="Current user status">
+          <span class="user-presence"><span class="presence-light" aria-hidden="true"></span>watching you on-line :)</span>
+          <span class="footer-hashtag">#currentFavouriteDrink: Sütaş Ayran</span>
+          <span class="footer-hashtag">#currentMusic: S.Maharba – S.Maharba</span>
+        </div>
+        <div class="footer-tools">
+          <a class="commons-credit" href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank" rel="noreferrer">Images: Wikimedia Commons</a>
+          <button class="fact-gallery-open" type="button" aria-haspopup="dialog" aria-controls="fact-image-gallery" hidden>Image gallery</button>
+          <button class="theme-cycle" type="button">
+            <span class="theme-name">Theme</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.76-4.24M16 3.5v3.5h-3.5" /></svg>
+          </button>
+        </div>
+      </footer>
+
+      <dialog id="fact-image-gallery" class="fact-image-gallery" aria-labelledby="fact-image-gallery-title" aria-describedby="fact-image-gallery-note">
+        <div class="fact-gallery-panel">
+          <header class="fact-gallery-header">
+            <div>
+              <h2 id="fact-image-gallery-title">Fact image gallery</h2>
+              <p id="fact-image-gallery-note">Choose an image for any fact. Personal images stay in this browser on this device.</p>
+            </div>
+            <button class="fact-gallery-close" type="button" aria-label="Close image gallery">×</button>
+          </header>
+          <p class="fact-gallery-status" role="status" aria-live="polite"></p>
+          <div class="fact-gallery-grid"></div>
+        </div>
+      </dialog>
+    </main>
+
+    <script src="commons-images.js?v=22"></script>
+    <script src="mine.js?v=3"></script>
+    <script src="facts.js?v=18"></script>
+    <script>
+      // The toggle flips light/dark: a palette with a partner switches to it,
+      // any other gets a random one from the other pool.
+      const toggle = document.querySelector(".theme-toggle");
+      const cycle = document.querySelector(".theme-cycle");
+      const label = () => {
+        const name = folioPalettes.names[document.documentElement.dataset.palette];
+        toggle.title = `Theme: ${name}. Switch to ${folioPalettes.scheme() === "dark" ? "light" : "dark"}`;
+        toggle.setAttribute("aria-label", toggle.title);
+        cycle.querySelector(".theme-name").textContent = name;
+        cycle.title = `Theme: ${name}. Show the next ${folioPalettes.scheme()} theme`;
+        cycle.setAttribute("aria-label", cycle.title);
+      };
+      label();
+
+      // The footer's theme name steps through the current pool in order, so
+      // repeated clicks show every light (or dark) theme.
+      cycle.addEventListener("click", () => {
+        const pool = folioPalettes.pools[folioPalettes.scheme()];
+        const at = pool.indexOf(document.documentElement.dataset.palette);
+        folioPalettes.apply(pool[(at + 1) % pool.length]);
+        label();
+      });
+
+      document.querySelector(".footer-year").textContent = new Date().getFullYear();
+      toggle.addEventListener("click", () => {
+        const root = document.documentElement;
+        const next = folioPalettes.scheme() === "dark" ? "light" : "dark";
+        const partner = folioPalettes.partners[root.dataset.palette];
+        root.dataset.theme = next;
+        try { localStorage.setItem("theme", next); } catch {}
+        folioPalettes.apply(folioPalettes.pools[next].includes(partner) ? partner : folioPalettes.random(next));
+        label();
+      });
+
+      // Following the system: if it switches between light and dark, follow.
+      matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+        if (document.documentElement.dataset.theme) return;
+        folioPalettes.apply(folioPalettes.random(folioPalettes.scheme()));
+        label();
+      });
+
+      // Animate project details open and closed instead of letting the page jump.
+      const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)");
+
+      // Scroll just enough to show the bottom of an opening card or section,
+      // but never so far that its own title leaves the top of the screen.
+      const keepInView = (details, title = details.closest(".project-entry")) => {
+        const gap = 16;
+        const top = title.getBoundingClientRect().top;
+        const bottom = details.getBoundingClientRect().bottom;
+        const delta = Math.min(bottom + gap - innerHeight, top - gap);
+        if (delta > 0) scrollBy({ top: delta, behavior: "instant" });
+      };
+
+      document.querySelectorAll(".project-more").forEach((details) => {
+        const list = details.querySelector(".project-points");
+        let animation = null;
+        let fade = null;
+        let closing = false;
+
+        details.querySelector("summary").addEventListener("click", (event) => {
+          if (reduceMotion.matches) {
+            requestAnimationFrame(() => details.open && keepInView(details));
+            return;
+          }
+          event.preventDefault();
+
+          const opening = !details.open || closing;
+          const from = details.offsetHeight;
+          const fromOpacity = details.open ? Number(getComputedStyle(list).opacity) : 0;
+          animation?.cancel();
+          fade?.cancel();
+
+          // Measure without the clipping, which would change how margins add up.
+          details.style.overflow = "";
+          details.open = false;
+          const closedHeight = details.offsetHeight;
+          details.open = true;
+          const openHeight = details.offsetHeight;
+          const to = opening ? openHeight : closedHeight;
+
+          closing = !opening;
+          details.style.overflow = "hidden";
+          const timing = { duration: 260, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" };
+          animation = details.animate({ height: [`${from}px`, `${to}px`] }, timing);
+          fade = list.animate({ opacity: [fromOpacity, opening ? 1 : 0] }, timing);
+
+          if (opening) {
+            const current = animation;
+            const follow = () => {
+              if (animation !== current) return;
+              keepInView(details);
+              requestAnimationFrame(follow);
+            };
+            requestAnimationFrame(follow);
+          }
+
+          animation.onfinish = () => {
+            if (opening) keepInView(details);
+            if (closing) details.open = false;
+            closing = false;
+            details.style.overflow = "";
+            animation = null;
+            window.layoutFactCells?.();
+          };
+        });
+      });
+
+      // The Moreover section starts folded; its heading opens and closes it,
+      // the body sliding open and fading in, or the reverse. Opening carries
+      // the page down with it until the heading reaches the top of the screen.
+      document.querySelectorAll(".section-fold").forEach((button) => {
+        const body = document.getElementById(button.getAttribute("aria-controls"));
+        const section = button.closest("section");
+        let animation = null;
+        button.addEventListener("click", () => {
+          const opening = button.getAttribute("aria-expanded") !== "true";
+          button.setAttribute("aria-expanded", String(opening));
+          const from = body.hidden ? 0 : body.offsetHeight;
+          const fromOpacity = body.hidden ? 0 : Number(getComputedStyle(body).opacity);
+          animation?.cancel();
+          body.hidden = false;
+          if (reduceMotion.matches) {
+            body.hidden = !opening;
+            if (opening) keepInView(body, section);
+            return;
+          }
+          const to = opening ? body.scrollHeight : 0;
+          body.style.overflow = "hidden";
+          animation = body.animate(
+            { height: [`${from}px`, `${to}px`], opacity: [fromOpacity, opening ? 1 : 0] },
+            { duration: 240, easing: "cubic-bezier(0.2, 0.7, 0.2, 1)" },
+          );
+          if (opening) {
+            const current = animation;
+            const follow = () => {
+              if (animation !== current) return;
+              keepInView(body, section);
+              requestAnimationFrame(follow);
+            };
+            requestAnimationFrame(follow);
+          }
+          animation.onfinish = () => {
+            body.hidden = !opening;
+            body.style.overflow = "";
+            animation = null;
+            if (opening) keepInView(body, section);
+          };
+        });
+      });
+
+      // The compact fact matrix uses one shared reader so the left column can
+      // hold many entries without turning every cell into a paragraph.
+      const factGrid = document.querySelector(".fact-grid");
+      const facts = window.folioFacts || [];
+      const commonsImages = window.folioCommonsImages || {};
+      const myImages = window.folioMyImages || {};
+      const userFactImages = new Map();
+      // Order of precedence: picked in this browser, then assets/mine/, then Commons.
+      const getFactImage = (fact) => {
+        if (userFactImages.has(fact.code)) return userFactImages.get(fact.code);
+        const mine = myImages[fact.code];
+        if (mine) {
+          const entry = typeof mine === "string" ? { src: mine } : mine;
+          return { ...entry, src: `assets/mine/${entry.src}`, kind: "mine", file: entry.src };
+        }
+        return commonsImages[fact.code] ? { ...commonsImages[fact.code], kind: "commons" } : null;
+      };
+
+      // How an image fills its box is decided once its pixels are known:
+      // - anything see-through gets a white mat; logos and icons with a
+      //   see-through edge also sit whole on it;
+      // - drawings on a flat background sit whole on a mat of that colour;
+      // - photos fill the box, cropped around the centre, unless their shape
+      //   is so far from the box that cropping would lose the subject: then
+      //   they sit whole on a mat of their own average colour.
+      // With `letterbox` (the reader's square) photos follow simpler rules:
+      // landscape and square ones are cropped around the centre, portrait
+      // ones sit whole over a blurred, enlarged copy of themselves.
+      // `fit` ("cover" or "contain"), `focus` (an object-position) and `mat`
+      // (a colour) in the image data override the guess; `pixelated` keeps
+      // pixel art and dithering crisp instead of smoothing it.
+      //
+      // A page opened as a file may not read its own pixels, so the Commons
+      // images carry their look precomputed in commons-images.js; any other
+      // format that can be see-through then gets a white mat to be safe.
+      const imageLooks = new Map();
+      const readImageLook = (img, image) => {
+        const aspect = img.naturalWidth / img.naturalHeight;
+        if (image.look) return { ...image.look, aspect };
+        if (imageLooks.has(img.src)) return imageLooks.get(img.src);
+        let look = { kind: "photo", aspect };
+        try {
+          const size = 32;
+          const canvas = document.createElement("canvas");
+          canvas.width = canvas.height = size;
+          const context = canvas.getContext("2d", { willReadFrequently: true });
+          context.drawImage(img, 0, 0, size, size);
+          const data = context.getImageData(0, 0, size, size).data;
+          const pixel = (x, y) => data.subarray((y * size + x) * 4, (y * size + x) * 4 + 4);
+          const border = [];
+          for (let i = 0; i < size; i++) border.push(pixel(i, 0), pixel(i, size - 1), pixel(0, i), pixel(size - 1, i));
+          const mean = (pixels) => [0, 1, 2].map((c) => Math.round(pixels.reduce((sum, p) => sum + p[c], 0) / pixels.length));
+          const all = [];
+          for (let i = 0; i < data.length; i += 4) all.push(data.subarray(i, i + 4));
+          const opaqueBorder = border.filter((p) => p[3] > 128);
+          const seeThrough = all.filter((p) => p[3] < 250).length > all.length * 0.01;
+          if (seeThrough) look = { ...look, kind: opaqueBorder.length < border.length * 0.75 ? "graphic" : "photo", mat: "#fff", transparent: true };
+          else {
+            const edge = mean(border);
+            const close = border.filter((p) => Math.hypot(p[0] - edge[0], p[1] - edge[1], p[2] - edge[2]) < 30);
+            look = close.length > border.length * 0.9
+              ? { ...look, kind: "graphic", mat: `rgb(${edge})` }
+              : { ...look, mat: `rgb(${mean(all)})` };
+          }
+        } catch {
+          if (/\.(png|webp|gif|svg)$/i.test(img.src) || img.src.startsWith("blob:")) look = { ...look, mat: "#fff", transparent: true };
+        }
+        imageLooks.set(img.src, look);
+        return look;
+      };
+      const fitFactImage = (img, image, boxAspect, letterbox = false) => {
+        const apply = () => {
+          if (!img.naturalWidth) return;
+          const look = readImageLook(img, image);
+          const shape = look.aspect / boxAspect;
+          const photo = look.kind === "photo" && !look.transparent;
+          const fit = image.fit
+            || (letterbox && photo ? (shape < 0.9 ? "contain" : "cover") : "")
+            || (look.kind === "graphic" || shape > 2.2 || shape < 0.45 ? "contain" : "cover");
+          img.dataset.fit = fit;
+          img.dataset.look = look.kind;
+          if (look.transparent) img.dataset.transparent = "";
+          if (letterbox && photo && fit === "contain") img.dataset.letterbox = "";
+          img.style.objectPosition = image.focus || "50% 50%";
+          img.style.backgroundColor = "letterbox" in img.dataset ? "" : fit === "contain" || look.transparent ? image.mat || look.mat || "" : "";
+        };
+        // A lazy image that has not started loading can already report
+        // `complete`, so only trust it once there are pixels.
+        if (img.complete && img.naturalWidth) apply();
+        else img.addEventListener("load", apply, { once: true });
+      };
+
+      // boxAspect: width / height of the box the image will fill.
+      const makeFactThumbnail = (image, className, boxAspect, letterbox = false) => {
+        const thumbnail = document.createElement("img");
+        thumbnail.className = `fact-image ${className}`.trim();
+        thumbnail.src = image.src;
+        thumbnail.alt = "";
+        thumbnail.loading = "lazy";
+        thumbnail.decoding = "async";
+        if (image.pixelated) thumbnail.style.imageRendering = "pixelated";
+        if (image.kind === "commons") thumbnail.title = `${image.file} — ${image.artist}; ${image.license}`;
+        fitFactImage(thumbnail, image, boxAspect, letterbox);
+        return thumbnail;
+      };
+      const setFactCellImage = (cell, fact) => {
+        cell.querySelector(".fact-cell-image")?.remove();
+        const image = getFactImage(fact);
+        cell.classList.toggle("has-image", Boolean(image));
+        if (image) cell.prepend(makeFactThumbnail(image, "fact-cell-image", 30 / 38));
+      };
+      const today = new Date();
+      const todayUtc = Date.UTC(today.getFullYear(), today.getMonth(), today.getDate());
+      const daysSince = (year, month, day) => Math.floor((todayUtc - Date.UTC(year, month - 1, day)) / 86400000);
+      const counters = {
+        exileDays: daysSince(2021, 7, 21),
+        warDays: daysSince(2022, 2, 24),
+      };
+      const renderFactText = (text) => text.replace(/\{\{(exileDays|warDays)\}\}/g, (_, key) => counters[key]);
+
+      if (factGrid) {
+        const fragment = document.createDocumentFragment();
+        facts.forEach((fact) => {
+          const cell = document.createElement("button");
+          cell.className = "fact-cell";
+          cell.type = "button";
+          cell.dataset.code = fact.code;
+          cell.dataset.title = fact.title;
+          cell.dataset.fact = renderFactText(fact.text);
+          if (fact.href) cell.dataset.href = fact.href;
+          if (fact.linkLabel) cell.dataset.linkLabel = fact.linkLabel;
+          if (fact.linkText) cell.dataset.linkText = fact.linkText;
+
+          const code = document.createElement("span");
+          code.className = "fact-code";
+          code.textContent = fact.code;
+          const label = document.createElement("span");
+          label.className = "fact-label";
+          label.textContent = fact.label || fact.title;
+          cell.append(code, label);
+          setFactCellImage(cell, fact);
+          fragment.append(cell);
+        });
+        factGrid.replaceChildren(fragment);
+      }
+
+      const factCells = [...document.querySelectorAll(".fact-cell")];
+      const factReaders = [...document.querySelectorAll("[data-fact-reader]")];
+      const featuredSection = document.querySelector("#featured-facts");
+      const featuredList = document.querySelector(".featured-facts-list");
+      if (factCells.length && factReaders.length) {
+        const featuredIcons = {
+          SAT: "◉", TEA: "♨", FND: "⌘", OSX: "X", SCO: "⚡", SJS: "",
+          CAT: "=ᵔ·ᵔ=", KFG: "♠", EST: "#", HASH: "#", BLO: "●", X: "𝕏",
+          WB: "◐", DTH: "∠", VPN: "403", ALD: "A", PFD: "↺", BOB: "Б",
+          ARM: "Ø", CST: "♜", MUS: "♫", PRO: "AI", POS: "AR+", IMV: "▶",
+          MVG: "U", WAP: "W", FIL: "35", LAW: "§", CLN: "✓",
+        };
+        // The left column shows window.folioFeatured (facts.js) in order, as
+        // many as fit; the same facts stay in the grid below.
+        const featuredOrder = (window.folioFeatured || [])
+          .map((code) => facts.findIndex((fact) => fact.code === code))
+          .filter((index) => index >= 0)
+          .map((index) => ({ fact: facts[index], index, text: renderFactText(facts[index].text) }));
+
+        const appendFactText = (target, fact, text) => {
+          target.replaceChildren();
+          if (!fact.href || !fact.linkText) {
+            target.append(document.createTextNode(text));
+            return;
+          }
+          const at = text.toLocaleLowerCase().indexOf(fact.linkText.toLocaleLowerCase());
+          if (at < 0) {
+            target.append(document.createTextNode(text));
+            return;
+          }
+          const link = document.createElement("a");
+          link.href = fact.href;
+          link.target = "_blank";
+          link.rel = "noreferrer";
+          link.textContent = text.slice(at, at + fact.linkText.length);
+          target.append(
+            document.createTextNode(text.slice(0, at)),
+            link,
+            document.createTextNode(text.slice(at + fact.linkText.length)),
+          );
+        };
+
+        // The reader reads like a large userbox: the picture on the left, the
+        // fact itself on the right.
+        const updateReader = (reader, cell, index) => {
+          const fact = facts[index];
+          const readerCopy = reader.querySelector(".fact-reader-copy");
+          const readerLink = reader.querySelector(".fact-reader-link");
+          const readerVisual = reader.querySelector(".fact-reader-visual");
+
+          appendFactText(readerCopy, fact, cell.dataset.fact);
+          const image = getFactImage(fact);
+          readerVisual.replaceChildren();
+          // The blurred backdrop behind a letterboxed portrait (see styles.css).
+          readerVisual.style.setProperty("--backdrop", image ? `url(${JSON.stringify(new URL(image.src, location.href).href)})` : "none");
+          if (image) {
+            readerVisual.append(makeFactThumbnail(image, "fact-reader-image", 1, true));
+          } else {
+            const placeholder = document.createElement("span");
+            placeholder.textContent = fact.icon || featuredIcons[fact.code] || fact.code;
+            readerVisual.append(placeholder);
+          }
+          if (cell.dataset.href && !cell.dataset.linkText) {
+            readerLink.href = cell.dataset.href;
+            readerLink.textContent = cell.dataset.linkLabel || "Source";
+            readerLink.hidden = false;
+          } else {
+            readerLink.hidden = true;
+            readerLink.removeAttribute("href");
+          }
+          // The new fact fades in; a picture that is still loading fades in
+          // once it arrives, so it does not pop in after the fade.
+          if (reduceMotion.matches) return;
+          const fadeIn = (element) => element.animate({ opacity: [0, 1] }, { duration: 200, easing: "ease-out" });
+          [readerCopy, readerLink].forEach(fadeIn);
+          const picture = readerVisual.querySelector("img");
+          if (picture && !(picture.complete && picture.naturalWidth)) {
+            readerVisual.style.opacity = "0";
+            picture.addEventListener("load", () => {
+              if (!picture.isConnected) return;
+              readerVisual.style.opacity = "";
+              fadeIn(readerVisual);
+            }, { once: true });
+            picture.addEventListener("error", () => (readerVisual.style.opacity = ""), { once: true });
+          } else {
+            readerVisual.style.opacity = "";
+            fadeIn(readerVisual);
+          }
+        };
+
+        const selectFact = (cell, moveFocus = false) => {
+          const index = factCells.indexOf(cell);
+          factCells.forEach((candidate) => {
+            const selected = candidate === cell;
+            candidate.classList.toggle("is-active", selected);
+            if (selected) candidate.setAttribute("aria-current", "true");
+            else candidate.removeAttribute("aria-current");
+          });
+          factReaders.forEach((reader) => updateReader(reader, cell, index));
+          if (moveFocus) cell.focus();
+        };
+
+        factCells.forEach((cell, index) => {
+          cell.addEventListener("click", () => selectFact(cell));
+          cell.addEventListener("keydown", (event) => {
+            const cellGrid = cell.closest(".fact-grid");
+            const columns = getComputedStyle(cellGrid).gridTemplateColumns.split(" ").length;
+            const delta = { ArrowLeft: -1, ArrowRight: 1, ArrowUp: -columns, ArrowDown: columns }[event.key];
+            if (!delta) return;
+            event.preventDefault();
+            const visibleCells = factCells.filter((candidate) => !candidate.hidden);
+            const visibleIndex = visibleCells.indexOf(cell);
+            selectFact(visibleCells[(visibleIndex + delta + visibleCells.length) % visibleCells.length], true);
+          });
+        });
+
+        const makeFeaturedUserbox = ({ fact, text }) => {
+          const userbox = document.createElement("article");
+          userbox.className = "featured-userbox";
+          const image = getFactImage(fact);
+          const icon = document.createElement(image?.page ? "a" : "div");
+          icon.className = "featured-userbox-icon";
+          if (image) {
+            if (image.page) {
+              icon.href = image.page;
+              icon.target = "_blank";
+              icon.rel = "noreferrer";
+              icon.setAttribute("aria-label", `Image source: ${image.file}; ${image.artist}; ${image.license}`);
+            } else {
+              icon.setAttribute("aria-hidden", "true");
+            }
+            icon.append(makeFactThumbnail(image, "", 0.8));
+          } else {
+            icon.setAttribute("aria-hidden", "true");
+            icon.textContent = fact.icon || featuredIcons[fact.code] || fact.code;
+          }
+          const copy = document.createElement("p");
+          copy.className = "featured-userbox-copy";
+          appendFactText(copy, fact, text);
+          userbox.append(icon, copy);
+          return userbox;
+        };
+
+        // The random Wikipedia-style userboxes fill only the spare left column.
+        // Their facts are hidden from the full matrix below, so nothing repeats.
+        // Phones skip the sidebar and restore every fact to the single wall.
+        const layoutFactCells = () => {
+          const mobile = matchMedia("(max-width: 720px)").matches;
+          const right = document.querySelector(".ledger-right");
+          if (!factGrid || !featuredSection || !featuredList || !right) return;
+
+          featuredList.replaceChildren();
+          featuredSection.style.removeProperty("height");
+          featuredList.style.removeProperty("height");
+          featuredList.style.removeProperty("grid-template-rows");
+          const featuredHeading = featuredSection.querySelector("h2");
+          if (mobile) {
+            featuredHeading.textContent = "About";
+            const mobileFacts = document.createDocumentFragment();
+            facts.forEach((fact) => mobileFacts.append(makeFeaturedUserbox({
+              fact,
+              text: renderFactText(fact.text),
+            })));
+            featuredList.append(mobileFacts);
+            return;
+          }
+          featuredHeading.textContent = "About";
+
+          const available = Math.max(0, Math.floor(
+            right.getBoundingClientRect().bottom - featuredSection.getBoundingClientRect().top,
+          ));
+          const headingHeight = featuredSection.querySelector("h2").offsetHeight;
+          const listHeight = Math.max(0, available - headingHeight - 2);
+          const count = Math.min(featuredOrder.length, Math.max(1, Math.floor(listHeight / 68)));
+          const chosen = featuredOrder.slice(0, count);
+
+          featuredSection.style.height = `${available}px`;
+          featuredList.style.height = `${listHeight}px`;
+          featuredList.style.gridTemplateRows = `repeat(${count}, minmax(0, 1fr))`;
+          const fragment = document.createDocumentFragment();
+          chosen.forEach((item) => fragment.append(makeFeaturedUserbox(item)));
+          featuredList.append(fragment);
+        };
+
+        window.layoutFactCells = layoutFactCells;
+        addEventListener("resize", layoutFactCells, { passive: true });
+        if ("ResizeObserver" in window) new ResizeObserver(layoutFactCells).observe(document.querySelector(".ledger-right"));
+        document.fonts.ready.then(layoutFactCells);
+        layoutFactCells();
+        selectFact(factCells[0]);
+
+        const gallery = document.querySelector("#fact-image-gallery");
+        const galleryGrid = gallery?.querySelector(".fact-gallery-grid");
+        const galleryStatus = gallery?.querySelector(".fact-gallery-status");
+        let imageDbPromise = null;
+        const openImageDb = () => {
+          if (!imageDbPromise) {
+            imageDbPromise = new Promise((resolve, reject) => {
+              if (!("indexedDB" in window)) return reject(new Error("IndexedDB is unavailable"));
+              const request = indexedDB.open("folio-fact-images", 1);
+              request.onupgradeneeded = () => request.result.createObjectStore("images", { keyPath: "code" });
+              request.onsuccess = () => resolve(request.result);
+              request.onerror = () => reject(request.error);
+            });
+          }
+          return imageDbPromise;
+        };
+        const imageDbRequest = async (mode, operation) => {
+          const db = await openImageDb();
+          return new Promise((resolve, reject) => {
+            const transaction = db.transaction("images", mode);
+            const request = operation(transaction.objectStore("images"));
+            request.onsuccess = () => resolve(request.result);
+            request.onerror = () => reject(request.error);
+          });
+        };
+        const refreshFactImages = () => {
+          factCells.forEach((cell, index) => setFactCellImage(cell, facts[index]));
+          layoutFactCells();
+          const selected = factCells.find((cell) => cell.classList.contains("is-active") && !cell.hidden)
+            || factCells.find((cell) => !cell.hidden)
+            || factCells[0];
+          if (selected) selectFact(selected);
+          renderGallery();
+        };
+        const setUserImage = (code, blob, name) => {
+          const previous = userFactImages.get(code);
+          if (previous?.kind === "user") URL.revokeObjectURL(previous.src);
+          userFactImages.set(code, {
+            src: URL.createObjectURL(blob),
+            kind: "user",
+            file: name || "Personal image",
+          });
+        };
+        const renderGallery = () => {
+          if (!galleryGrid) return;
+          const fragment = document.createDocumentFragment();
+          facts.forEach((fact) => {
+            const image = getFactImage(fact);
+            const item = document.createElement("article");
+            item.className = "fact-gallery-item";
+            item.dataset.code = fact.code;
+
+            const preview = document.createElement("div");
+            preview.className = "fact-gallery-preview";
+            if (image) preview.append(makeFactThumbnail(image, "fact-gallery-image", 4 / 3));
+            else {
+              const placeholder = document.createElement("span");
+              placeholder.className = "fact-gallery-placeholder";
+              placeholder.textContent = fact.icon || featuredIcons[fact.code] || fact.code;
+              preview.append(placeholder);
+            }
+
+            const title = document.createElement("p");
+            title.className = "fact-gallery-title";
+            title.innerHTML = `<strong>${fact.code}</strong><span></span>`;
+            title.querySelector("span").textContent = fact.title;
+
+            const choose = document.createElement("label");
+            choose.className = "fact-gallery-choose";
+            choose.textContent = userFactImages.has(fact.code) ? "Change" : "Choose image";
+            const input = document.createElement("input");
+            input.type = "file";
+            input.accept = "image/*";
+            input.addEventListener("change", async () => {
+              const file = input.files?.[0];
+              if (!file) return;
+              let persisted = true;
+              try {
+                await imageDbRequest("readwrite", (store) => store.put({ code: fact.code, blob: file, name: file.name }));
+              } catch {
+                persisted = false;
+              }
+              setUserImage(fact.code, file, file.name);
+              galleryStatus.textContent = persisted
+                ? `${fact.code}: image saved in this browser.`
+                : `${fact.code}: image loaded for this tab; browser storage is unavailable.`;
+              refreshFactImages();
+            });
+            choose.append(input);
+            item.append(preview, title, choose);
+
+            if (userFactImages.has(fact.code)) {
+              const reset = document.createElement("button");
+              reset.className = "fact-gallery-reset";
+              reset.type = "button";
+              reset.textContent = "Use default";
+              reset.addEventListener("click", async () => {
+                try { await imageDbRequest("readwrite", (store) => store.delete(fact.code)); } catch {}
+                const previous = userFactImages.get(fact.code);
+                if (previous?.kind === "user") URL.revokeObjectURL(previous.src);
+                userFactImages.delete(fact.code);
+                galleryStatus.textContent = `${fact.code}: default image restored.`;
+                refreshFactImages();
+              });
+              item.append(reset);
+            }
+            fragment.append(item);
+          });
+          galleryGrid.replaceChildren(fragment);
+        };
+
+        document.querySelector(".fact-gallery-open")?.addEventListener("click", () => {
+          renderGallery();
+          gallery?.showModal();
+        });
+        gallery?.querySelector(".fact-gallery-close")?.addEventListener("click", () => gallery.close());
+        gallery?.addEventListener("click", (event) => {
+          if (event.target === gallery) gallery.close();
+        });
+        renderGallery();
+        imageDbRequest("readonly", (store) => store.getAll())
+          .then((records) => {
+            records.forEach((record) => setUserImage(record.code, record.blob, record.name));
+            if (records.length) refreshFactImages();
+          })
+          .catch(() => {
+            if (galleryStatus) galleryStatus.textContent = "Personal images will last for this tab only.";
+          });
+      }
+
+      // Run the #OPENTOWORK ticker around the frame: text on a rectangular path
+      // through the lane between the double rule and the content. Each side fades
+      // out into its corners, so the text never visibly turns.
+      (() => {
+        const folio = document.querySelector(".folio");
+        if (!folio || !("ResizeObserver" in window)) return;
+        const NS = "http://www.w3.org/2000/svg";
+        const lane = 24;         // distance of the path from the frame's inner edge
+        const fade = 56;         // length of the fade into and out of each corner
+        const speed = 40;        // px per second, clockwise
+        const make = (name, attrs = {}) => {
+          const node = document.createElementNS(NS, name);
+          for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, value);
+          return node;
+        };
+
+        const svg = make("svg", { class: "frame-ticker", "aria-hidden": "true" });
+        const path = make("path", { id: "frame-ticker-path", fill: "none" });
+        const text = make("text");
+        const textPath = make("textPath", { href: "#frame-ticker-path" });
+        const motion = make("animate", { attributeName: "startOffset", repeatCount: "indefinite" });
+        text.append(textPath);
+
+        // Mask: one strip per side, opaque in the middle and fading to nothing at
+        // both ends. Left and right share the vertical gradient, top and bottom the
+        // horizontal one.
+        const gradient = (id, vertical) => {
+          const node = make("linearGradient", vertical ? { id, x1: 0, y1: 0, x2: 0, y2: 1 } : { id });
+          for (const color of ["#000", "#fff", "#fff", "#000"]) node.append(make("stop", { "stop-color": color }));
+          return node;
+        };
+        const across = gradient("frame-ticker-fade-h", false);
+        const down = gradient("frame-ticker-fade-v", true);
+        const mask = make("mask", { id: "frame-ticker-mask", maskUnits: "userSpaceOnUse", x: 0, y: 0 });
+        const sides = {
+          top: make("rect", { fill: "url(#frame-ticker-fade-h)" }),
+          right: make("rect", { fill: "url(#frame-ticker-fade-v)" }),
+          bottom: make("rect", { fill: "url(#frame-ticker-fade-h)" }),
+          left: make("rect", { fill: "url(#frame-ticker-fade-v)" }),
+        };
+        mask.append(...Object.values(sides));
+        const defs = make("defs");
+        defs.append(across, down, mask);
+        text.setAttribute("mask", "url(#frame-ticker-mask)");
+        svg.append(defs, path, text);
+
+        // One phrase: "#" from Georgia, the word in Carolingia, then a diamond.
+        const addPhrase = (parent, dx) => {
+          const hash = make("tspan", { class: "frame-ticker-hash" });
+          if (dx) hash.setAttribute("dx", dx);
+          hash.textContent = "#";
+          const word = make("tspan");
+          word.textContent = "OPENTOWORK\u2002\u2002";
+          // Lift the diamond to mid-height and drop back by the same pixels, so the
+          // baseline returns to the path (em would differ between the two sizes).
+          const dot = make("tspan", { class: "frame-ticker-dot", dy: -4 });
+          dot.textContent = "\u25C6";
+          const after = make("tspan", { dy: 4 });
+          after.textContent = "\u2002\u2002";
+          parent.append(hash, word, dot, after);
+        };
+
+        let phraseLength = 0;
+        let phrases = 0;
+
+        // Measure one phrase as it will be set on the path. Hidden (on phones)
+        // it measures 0, so wait until the frame lane is actually shown.
+        const measure = () => {
+          const probe = make("text");
+          addPhrase(probe, 0);
+          svg.append(probe);
+          phraseLength = probe.getComputedTextLength();
+          probe.remove();
+        };
+
+        const layout = () => {
+          if (!phraseLength) measure();
+          if (!phraseLength) return;
+          const w = folio.clientWidth;
+          const h = folio.clientHeight;
+          const a = lane;
+          path.setAttribute("d", `M${a},${a} H${w - a} V${h - a} H${a} Z`);
+
+          // Glyphs stand on the path facing outwards, so each strip runs from the
+          // frame edge to a little inside the path.
+          const depth = a + 8;
+          const set = (node, attrs) => Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+          set(mask, { width: w, height: h });
+          set(sides.top, { x: a, y: 0, width: w - 2 * a, height: depth });
+          set(sides.bottom, { x: a, y: h - depth, width: w - 2 * a, height: depth });
+          set(sides.left, { x: 0, y: a, width: depth, height: h - 2 * a });
+          set(sides.right, { x: w - depth, y: a, width: depth, height: h - 2 * a });
+          const stops = (node, length) => {
+            const f = Math.min(0.5, fade / length);
+            [0, f, 1 - f, 1].forEach((offset, i) => node.children[i].setAttribute("offset", offset));
+          };
+          stops(across, w - 2 * a);
+          stops(down, h - 2 * a);
+
+          // Stretch the gaps so a whole number of phrases fits the loop exactly:
+          // then the phrase leaving at the end matches the one entering at the start.
+          const perimeter = path.getTotalLength();
+          const count = Math.max(1, Math.round(perimeter / phraseLength));
+          const step = perimeter / count;
+          const extra = step - phraseLength;
+          if (count !== phrases) {
+            phrases = count;
+            textPath.replaceChildren();
+            for (let i = 0; i <= count; i++) addPhrase(textPath, i ? extra : 0);
+          } else {
+            textPath.querySelectorAll(".frame-ticker-hash").forEach((hash, i) => i && hash.setAttribute("dx", extra));
+          }
+          if (reduceMotion.matches) {
+            textPath.setAttribute("startOffset", 0);
+            motion.remove();
+          } else {
+            motion.setAttribute("from", -step);
+            motion.setAttribute("to", 0);
+            motion.setAttribute("dur", `${step / speed}s`);
+            if (!motion.isConnected) textPath.append(motion);
+          }
+        };
+
+        document.fonts.ready.then(() => {
+          folio.prepend(svg);
+          document.documentElement.classList.add("has-frame-ticker");
+          layout();
+          new ResizeObserver(layout).observe(folio);
+        });
+      })();
+
+      // Print every project's details on naghammadi, then restore what the
+      // reader had open and the palette they were looking at.
+      let closedForPrint = [];
+      let paletteBeforePrint = null;
+      addEventListener("beforeprint", () => {
+        closedForPrint = [...document.querySelectorAll(".project-more:not([open])")];
+        closedForPrint.forEach((d) => (d.open = true));
+        paletteBeforePrint = document.documentElement.dataset.palette;
+        document.documentElement.dataset.palette = "naghammadi";
+      });
+      addEventListener("afterprint", () => {
+        closedForPrint.forEach((d) => (d.open = false));
+        if (paletteBeforePrint) document.documentElement.dataset.palette = paletteBeforePrint;
+      });
+    </script>
+  </body>
+</html>
